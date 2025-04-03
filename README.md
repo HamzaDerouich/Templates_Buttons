@@ -4,7 +4,7 @@ A collection of animated button templates built with HTML, CSS, and JavaScript u
 
 ## Preview
 
-![Button Preview](path-to-image.gif) *(Replace with an actual preview image or GIF)*
+
 
 ## Features
 
