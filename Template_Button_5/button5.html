@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botón con € Animado</title>
+    <style>
+        /* Fuente moderna */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
+        
+        :root {
+            --white: #fff;
+            --gray: #e0e0e0;
+            --pink: #ff4da6;
+            --dark-pink: #e60073;
+            --black: #2d3436;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f9f9f9;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-container {
+            position: relative;
+        }
+
+        .btn {
+            position: relative;
+            padding: 1.2rem 2.8rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--black);
+            background: transparent;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+
+        /* Efecto de fondo al hacer hover */
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--pink), var(--dark-pink));
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+            border-radius: 50px;
+        }
+
+        .btn:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .btn:hover {
+            color: var(--white);
+            box-shadow: 0 15px 35px rgba(231, 0, 115, 0.3);
+        }
+
+        /* Icono € animado */
+        .euro-icon {
+            position: absolute;
+            font-size: 1.8rem;
+            font-weight: bold;
+            animation: float 3s infinite ease-in-out;
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        /* Posiciones y animaciones para múltiples íconos */
+        .euro-icon:nth-child(1) {
+            top: -20px;
+            left: 20px;
+            animation-delay: 0s;
+            color: var(--pink);
+        }
+
+        .euro-icon:nth-child(2) {
+            top: 50%;
+            right: -15px;
+            animation-delay: 0.5s;
+            color: var(--dark-pink);
+        }
+
+        .euro-icon:nth-child(3) {
+            bottom: -15px;
+            left: 30%;
+            animation-delay: 1s;
+            color: #ff99cc;
+        }
+
+        .euro-icon:nth-child(4) {
+            top: 20px;
+            right: 30px;
+            animation-delay: 1.5s;
+            color: #ff1a8c;
+        }
+
+        /* Animación de flotación */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(10deg);
+            }
+        }
+
+        /* Efecto de brillo en los íconos */
+        .euro-icon:hover {
+            opacity: 1;
+            filter: drop-shadow(0 0 5px rgba(255, 102, 178, 0.7));
+        }
+    </style>
+</head>
+<body>
+    <div class="btn-container">
+        <span class="euro-icon">€</span>
+        <span class="euro-icon">€</span>
+        <span class="euro-icon">€</span>
+        <span class="euro-icon">€</span>
+        <button class="btn">Request Validation</button>
+    </div>
+</body>
+</html>

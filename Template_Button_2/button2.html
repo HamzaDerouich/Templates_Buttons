@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button-1</title>
+    <style>
+        /* Lato font */
+        @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+
+        /* color/ui color variables */
+        :root {
+            --white: #ffffff;
+            --gray: #cccccc;
+            --pink: #ff66b2;
+            --dark-pink: #e64d98;
+            --black: #111111;
+            --cubic-bezier: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Lato", sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: auto;
+            margin: auto;
+        }
+
+        .btn {
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 700;
+            border: 0;
+            position: relative;
+            letter-spacing: 0.15em;
+            margin: 0 auto;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            outline: none;
+            font-size: 28px;
+            color: var(--black);
+            transition: all 0.5s var(--cubic-bezier) 0.15s;
+            cursor: pointer;
+        }
+
+        .btn::after,
+        .btn::before {
+            border: 0;
+            content: "";
+            position: absolute;
+            height: 40%;
+            width: 10%;
+            transition: all 0.5s var(--cubic-bezier);
+            z-index: -2;
+            border-radius: 50%;
+        }
+
+        .btn::before {
+            background-color: var(--gray);
+            top: -0.75rem;
+            left: 0.5rem;
+            animation: topAnimation 2s var(--cubic-bezier) 0.25s infinite alternate;
+        }
+
+        .btn::after {
+            background-color: var(--pink);
+            top: 3rem;
+            left: 13rem;
+            animation: bottomAnimation 2s var(--cubic-bezier) 0.5s infinite alternate;
+        }
+
+        .btn:hover {
+            color: var(--white);
+        }
+
+        .btn:hover::before,
+        .btn:hover::after {
+            top: 0;
+            height: 100%;
+            width: 100%;
+            border-radius: 0;
+            animation: none;
+        }
+
+        .btn:hover::after {
+            left: 0rem;
+            background-color: var(--dark-pink);
+        }
+
+        .btn:hover::before {
+            top: 0.5rem;
+            left: 0.35rem;
+            background-color: var(--gray);
+        }
+
+        @keyframes topAnimation {
+            from {
+                transform: translate(0rem, 0);
+            }
+            to {
+                transform: translate(0rem, 3.5rem);
+            }
+        }
+
+        @keyframes bottomAnimation {
+            from {
+                transform: translate(-11.5rem, 0);
+            }
+            to {
+                transform: translate(0rem, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       <button class="btn">Request a Validation</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inmobiliaria Lujosa</title>
+    <style>
+        /* Fuente elegante para inmobiliaria */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap');
+        
+        :root {
+            --white: #ffffff;
+            --cream: #f8f4e9;
+            --light-gray: #e8e8e8;
+            --gold: #d4af37;
+            --dark-gold: #b38b2d;
+            --navy: #0a2540;
+            --dark-navy: #071a2b;
+            --shadow: 0 4px 12px rgba(10, 37, 64, 0.15);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cream);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Estilos para la barra de navegación */
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background-color: var(--white);
+            box-shadow: 0 2px 20px rgba(10, 37, 64, 0.1);
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--navy);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            letter-spacing: 1px;
+        }
+
+        .nav-logo span {
+            color: var(--gold);
+            margin-left: 0.3rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Estilos para los botones del menú */
+        .nav-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding: 0.7rem 1.8rem;
+            border: none;
+            border-radius: 4px;
+            background: transparent;
+            outline: none;
+            font-size: 0.95rem;
+            color: var(--navy);
+            cursor: pointer;
+            overflow: hidden;
+            transition: var(--transition);
+            z-index: 1;
+            white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .nav-btn::before,
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            border-radius: 4px;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        /* Capa base */
+        .nav-btn::before {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--light-gray);
+            border: 1px solid rgba(10, 37, 64, 0.1);
+        }
+
+        /* Capa dorada (animación) */
+        .nav-btn::after {
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(to right, var(--gold) 0%, var(--dark-gold) 100%);
+            top: -50%;
+            left: -100%;
+            transform: skewX(-15deg);
+        }
+
+        /* Efecto hover */
+        .nav-btn:hover {
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .nav-btn:hover::after {
+            left: 0;
+        }
+
+        /* Efecto activo (click) */
+        .nav-btn:active {
+            transform: translateY(0);
+        }
+
+        .nav-btn:active::after {
+            background: linear-gradient(to right, var(--dark-gold) 0%, #9a7a26 100%);
+        }
+
+        /* Botón especial (Call to Action) */
+        .nav-cta {
+            font-weight: 700;
+            padding: 0.8rem 2.2rem;
+            margin-left: 0.5rem;
+        }
+
+        .nav-cta::before {
+            background: var(--navy);
+            border: 1px solid var(--navy);
+        }
+
+        .nav-cta::after {
+            background: linear-gradient(to right, var(--gold) 0%, var(--dark-gold) 100%);
+        }
+
+        .nav-cta:hover {
+            color: var(--navy);
+        }
+
+        .nav-cta:hover::before {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+
+        /* Menú hamburguesa para móvil */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: all 0.5s ease;
+                box-shadow: 2px 0 15px rgba(10, 37, 64, 0.1);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-btn {
+                width: 80%;
+                justify-content: center;
+                margin: 0.5rem 0;
+            }
+            
+            .nav-logo {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="nav-logo">LUXE<span>STATE</span></a>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M3 6H21" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M3 18H21" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="#" class="nav-btn">Propiedades</a>
+                <a href="#" class="nav-btn">Proyectos</a>
+                <a href="#" class="nav-btn">Servicios</a>
+                <a href="#" class="nav-btn">Agentes</a>
+                <a href="#" class="nav-btn nav-cta">Valoración</a>
+            </div>
+        </div>
+    </nav>
+
+    <script>
+        // Menu toggle para móvil
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenu.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Cambiar icono de hamburguesa a X
+            const isActive = navMenu.classList.contains('active');
+            mobileMenu.innerHTML = isActive ? 
+                `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M6 6L18 18" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+                </svg>` :
+                `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12H21" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M3 6H21" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M3 18H21" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+                </svg>`;
+        });
+        
+        // Cerrar menú al hacer clic en un enlace (para móvil)
+        const navLinks = document.querySelectorAll('.nav-btn');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    navMenu.classList.remove('active');
+                    mobileMenu.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 12H21" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M3 6H21" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M3 18H21" stroke="#0A2540" stroke-width="2" stroke-linecap="round"/>
+                    </svg>`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

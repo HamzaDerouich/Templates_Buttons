@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botones de Dinero Épicos</title>
+    <style>
+        /* Fuente premium */
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+        
+        :root {
+            --gold: #FFD700;
+            --cash-green: #28a745;
+            --diamond-blue: #17a2b8;
+            --sparkle: rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        /* ----- BOTÓN 1: "GANAR DINERO FÁCIL" ----- */
+        .money-btn-1 {
+            position: relative;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2d3436;
+            background: linear-gradient(45deg, #f9f9f9, #ffffff);
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.4s;
+            z-index: 1;
+        }
+
+        .money-btn-1::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                var(--gold) 50%,
+                transparent 55%
+            );
+            transform: rotate(30deg);
+            z-index: -1;
+            animation: shine 3s infinite;
+            opacity: 0.7;
+        }
+
+        .money-btn-1:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .euro-float-1 {
+            position: absolute;
+            font-size: 1.4rem;
+            font-weight: bold;
+            animation: float-euro 4s infinite ease-in-out;
+            color: var(--gold);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Posiciones de los euros flotantes */
+        .euro-float-1:nth-child(1) { top: -15px; left: 20px; animation-delay: 0s; }
+        .euro-float-1:nth-child(2) { top: 50%; right: -10px; animation-delay: 0.5s; }
+        .euro-float-1:nth-child(3) { bottom: -10px; left: 30%; animation-delay: 1s; }
+
+        /* ----- BOTÓN 2: "AHORRA CON NOSOTROS" ----- */
+        .money-btn-2 {
+            position: relative;
+            padding: 1.3rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(45deg, #28a745, #34ce57);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            overflow: hidden;
+            transition: all 0.4s;
+            z-index: 1;
+        }
+
+        .money-btn-2::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                transparent 0%,
+                var(--sparkle) 50%,
+                transparent 100%
+            );
+            transform: translateX(-100%);
+            animation: shimmer 2.5s infinite;
+            z-index: -1;
+        }
+
+        .money-stack {
+            position: absolute;
+            font-size: 1.2rem;
+            animation: stack-grow 3s infinite;
+        }
+
+        /* Posiciones de los stacks de dinero */
+        .money-stack:nth-child(1) { bottom: -15px; left: 15%; animation-delay: 0s; }
+        .money-stack:nth-child(2) { top: -10px; right: 20%; animation-delay: 0.7s; }
+
+        /* ----- BOTÓN 3: "INVERSIÓN SEGURA" ----- */
+        .money-btn-3 {
+            position: relative;
+            padding: 1.4rem 3.2rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #212529;
+            background: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.4s;
+            z-index: 1;
+        }
+
+        .money-btn-3::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(23, 162, 184, 0.1) 0%,
+                rgba(23, 162, 184, 0.3) 100%
+            );
+            z-index: -1;
+        }
+
+        .diamond-euro {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: diamond-spin 5s infinite linear;
+            color: var(--diamond-blue);
+            opacity: 0.8;
+        }
+
+        /* Posiciones de los diamantes-euro */
+        .diamond-euro:nth-child(1) { top: 10px; left: 10px; }
+        .diamond-euro:nth-child(2) { bottom: 10px; right: 10px; animation-delay: 2.5s; }
+
+        /* ----- ANIMACIONES ----- */
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        @keyframes float-euro {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes stack-grow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+
+        @keyframes diamond-spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Efecto hover para todos los botones */
+        button:hover {
+            filter: brightness(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón 1: Oro - Atrae con la promesa de ganancia -->
+    <div style="position:relative">
+        <span class="euro-float-1">€</span>
+        <span class="euro-float-1">€</span>
+        <span class="euro-float-1">€</span>
+        <button class="money-btn-1">Ganar Dinero Fácil</button>
+    </div>
+
+    <!-- Botón 2: Verde dinero - Enfatiza el ahorro -->
+    <div style="position:relative">
+        <span class="money-stack">💰</span>
+        <span class="money-stack">💶</span>
+        <button class="money-btn-2">Ahorra con Nosotros</button>
+    </div>
+
+    <!-- Botón 3: Diamante - Inversión segura -->
+    <div style="position:relative">
+        <span class="diamond-euro">💎€</span>
+        <span class="diamond-euro">€💎</span>
+        <button class="money-btn-3">Inversión Segura</button>
+    </div>
+</body>
+</html>

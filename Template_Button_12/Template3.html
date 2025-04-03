@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botones Inmobiliarios Elegantes</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f4e9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            padding: 40px;
+            max-width: 1200px;
+        }
+
+        /* Estilo base mejorado */
+        .btn {
+            cursor: pointer;
+            position: relative;
+            padding: 15px 30px;
+            background: white;
+            font-size: 18px;
+            font-weight: 600;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            color: #2a2a2a;
+            border: none;
+            outline: none;
+            min-width: 180px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:after, .btn:before {
+            content: " ";
+            width: 12px;
+            height: 12px;
+            position: absolute;
+            border: 0px solid #fff;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .btn:after {
+            top: -1px;
+            left: -1px;
+            border-top: 3px solid #d4af37; /* Dorado */
+            border-left: 3px solid #d4af37;
+        }
+
+        .btn:before {
+            bottom: -1px;
+            right: -1px;
+            border-bottom: 3px solid #0a2540; /* Azul marino */
+            border-right: 3px solid #0a2540;
+        }
+
+        .btn:hover {
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:hover:before, .btn:hover:after {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Variantes temáticas para inmobiliaria */
+        .btn-properties {
+            color: #0a2540;
+        }
+
+        .btn-properties:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .btn-contact {
+            color: #d4af37;
+        }
+
+        .btn-contact:after {
+            border-top: 3px solid #2a9d8f; /* Verde azulado */
+            border-left: 3px solid #2a9d8f;
+        }
+
+        .btn-contact:hover {
+            background: rgba(42, 157, 143, 0.05);
+        }
+
+        .btn-locations {
+            color: #2a9d8f;
+        }
+
+        .btn-locations:before {
+            border-bottom: 3px solid #d4af37;
+            border-right: 3px solid #d4af37;
+        }
+
+        .btn-locations:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .btn-premium {
+            background: #0a2540;
+            color: white;
+        }
+
+        .btn-premium:after {
+            border-top: 3px solid #d4af37;
+            border-left: 3px solid #d4af37;
+        }
+
+        .btn-premium:before {
+            border-bottom: 3px solid white;
+            border-right: 3px solid white;
+        }
+
+        .btn-premium:hover {
+            background: #1a365d;
+        }
+
+        /* Efecto adicional para destacar */
+        .btn-special {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-special span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-special:after {
+            border-top: 3px solid #ff6b6b; /* Coral */
+            border-left: 3px solid #ff6b6b;
+        }
+
+        .btn-special:before {
+            border-bottom: 3px solid #d4af37;
+            border-right: 3px solid #d4af37;
+        }
+
+        .btn-special:hover:before {
+            border-color: #ff6b6b;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .btn {
+                min-width: 160px;
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            
+            .btn-container {
+                gap: 20px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="btn-container">
+        <button class="btn btn-properties">Propiedades</button>
+        <button class="btn btn-contact">Contacto</button>
+        <button class="btn btn-locations">Ubicaciones</button>
+        <button class="btn btn-premium">Premium</button>
+        <button class="btn btn-special"><span>Oportunidad</span></button>
+    </div>
+</body>
+</html>

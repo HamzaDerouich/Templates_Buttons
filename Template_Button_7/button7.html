@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lluvia de Euros Elegante</title>
+    <style>
+        /* Fuente sofisticada */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        
+        :root {
+            --white: #ffffff;
+            --cream: #f8f4f0;
+            --gold: #d4af37;
+            --dark-gold: #b38b2d;
+            --black: #222222;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--cream);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-container {
+            position: relative;
+            width: 300px;
+            height: 80px;
+        }
+
+        .btn {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--black);
+            background-color: var(--white);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            z-index: 10;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 0 2rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(180, 130, 40, 0.15);
+        }
+
+        /* Efecto de fondo dorado al hacer hover */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        .btn:hover {
+            color: var(--white);
+        }
+
+        /* Elementos de lluvia de euros */
+        .money-element {
+            position: absolute;
+            font-size: 1.2rem;
+            font-weight: bold;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Animación de caída */
+        @keyframes falling {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 50px)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Efecto de transformación al pasar sobre el botón */
+        .btn:hover ~ .money-element {
+            animation-play-state: paused;
+            transform: scale(1.5) translateY(0) !important;
+            opacity: 1 !important;
+        }
+
+        .btn:hover ~ .money-element::before {
+            content: '💶';
+            position: absolute;
+            animation: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn-container">
+        <button class="btn">Descubre Oportunidades</button>
+        
+        <!-- Elementos de dinero que caen -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const container = document.querySelector('.btn-container');
+                const btn = document.querySelector('.btn');
+                const btnRect = btn.getBoundingClientRect();
+                
+                // Crear elementos de dinero
+                for (let i = 0; i < 15; i++) {
+                    const element = document.createElement('div');
+                    element.className = 'money-element';
+                    element.textContent = '€';
+                    element.style.color = `hsl(${Math.random() * 30 + 30}, 70%, 60%)`;
+                    
+                    // Posición aleatoria horizontal
+                    const leftPos = Math.random() * (container.offsetWidth - 30);
+                    element.style.left = `${leftPos}px`;
+                    
+                    // Tiempo de animación aleatorio
+                    const duration = 5 + Math.random() * 10;
+                    const delay = Math.random() * 5;
+                    
+                    // Aplicar animación
+                    element.style.animation = `falling ${duration}s linear ${delay}s infinite`;
+                    
+                    // Tamaño aleatorio
+                    const size = 0.8 + Math.random() * 0.7;
+                    element.style.fontSize = `${size}rem`;
+                    
+                    // Velocidad de rotación
+                    const rotation = Math.random() > 0.5 ? 360 : -360;
+                    element.style.setProperty('--rotation', `${rotation}deg`);
+                    
+                    container.appendChild(element);
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>

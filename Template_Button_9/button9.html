@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lluvia Inmobiliaria Premium</title>
+    <style>
+        /* Fuente elegante */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        
+        :root {
+            --cream: #f8f5f2;
+            --pink: #ff9bb3;
+            --light-pink: #ffd6e0;
+            --gray: #d1d1d1;
+            --white: #ffffff;
+            --black: #2a2a2a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--cream);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .btn-container {
+            position: relative;
+            width: 320px;
+            height: 80px;
+        }
+
+        /* Botón principal */
+        .btn {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--black);
+            background-color: var(--white);
+            border: 1px solid var(--gray);
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+            transition: all 0.3s ease;
+            padding: 0 2rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Elementos de lluvia (€ y 🏠) */
+        .falling-element {
+            position: absolute;
+            font-size: 1.3rem;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none;
+            animation: falling 5s linear infinite;
+            opacity: 0;
+        }
+
+        /* Animación de caída vertical */
+        @keyframes falling {
+            0% {
+                transform: translateY(-100px) translateX(calc(var(--start-x) * 1px)) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            90% {
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px)) translateX(calc(var(--end-x) * 1px)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Efecto al pasar sobre el botón */
+        .btn:hover ~ .falling-element {
+            animation-play-state: paused;
+            opacity: 1;
+            transform: translateY(calc(var(--stop-y) * 1px)) scale(1.5);
+            transition: all 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+
+        .btn:hover ~ .falling-element::after {
+            content: attr(data-bill);
+            position: absolute;
+            font-size: 1.8rem;
+            animation: billPulse 1.5s infinite alternate;
+        }
+
+        /* Billetes animados */
+        @keyframes billPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="btn-container">
+        <button class="btn">Oportunidades Inmobiliarias</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.btn-container');
+            const btn = document.querySelector('.btn');
+            const btnRect = btn.getBoundingClientRect();
+            
+            // Billetes disponibles (rosa, gris, blanco)
+            const bills = [
+                { char: '💵', color: '#ff9bb3' }, // Rosa
+                { char: '💶', color: '#d1d1d1' }, // Gris
+                { char: '💷', color: '#ffffff' }  // Blanco
+            ];
+            
+            // Crear elementos de lluvia
+            for (let i = 0; i < 25; i++) {
+                const element = document.createElement('div');
+                element.className = 'falling-element';
+                
+                // Alternar entre € y 🏠
+                if (Math.random() > 0.3) {
+                    element.textContent = '€';
+                    element.style.color = '#f0c050'; // Dorado suave
+                } else {
+                    element.textContent = '🏠';
+                    element.style.color = '#a0a0a0'; // Gris cálido
+                }
+                
+                // Posición inicial aleatoria
+                const startX = Math.random() * window.innerWidth;
+                const endX = startX + (Math.random() - 0.5) * 100;
+                
+                // Asignar billete aleatorio para la transformación
+                const randomBill = bills[Math.floor(Math.random() * bills.length)];
+                element.setAttribute('data-bill', randomBill.char);
+                element.dataset.color = randomBill.color;
+                
+                // Propiedades CSS dinámicas
+                element.style.setProperty('--start-x', startX);
+                element.style.setProperty('--end-x', endX);
+                element.style.setProperty('--stop-y', Math.random() * 60 - 30);
+                
+                // Animación única para cada elemento
+                element.style.animationDuration = `${4 + Math.random() * 6}s`;
+                element.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(element);
+            }
+            
+            // Efecto hover para cambiar color de billetes
+            btn.addEventListener('mouseover', function() {
+                document.querySelectorAll('.falling-element').forEach(el => {
+                    el.style.color = el.dataset.color;
+                });
+            });
+            
+            btn.addEventListener('mouseout', function() {
+                document.querySelectorAll('.falling-element').forEach(el => {
+                    el.style.color = el.textContent === '€' ? '#f0c050' : '#a0a0a0';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
